@@ -5,12 +5,11 @@
 # See documentation in:
 # http://doc.scrapy.org/en/latest/topics/items.html
 
-import scrapy
+from scrapy.item import Item, Field
 
-
-class NwafuItem(scrapy.Item):
+class NwafuItem(Item):
     # define the fields for your item here like:
-    # name = scrapy.Field()
-    news_title = scrapy.Field()
-    news_date = scrapy.Field()
-    news_url = scrapy.Field()
+    # name = Field()
+    title = Field()
+    date = Field()
+    url = Field()
