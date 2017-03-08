@@ -3,7 +3,6 @@
 
 import scrapy
 from nwafu.items import NwafuItem
-import logging
 
 class nwafuSpider(scrapy.Spider):
     name = "nwafu"
@@ -23,18 +22,4 @@ class nwafuSpider(scrapy.Spider):
                     item['news_date'] = response.xpath("//*[@class='main_content']/table[1]/tr/td/ul/li/span/text()").extract()[j]
                     yield item
                 nextpage_url = "http://www.nwsuaf.edu.cn/xshd/%sindex.htm" % i
-                yield scrapy.Request(nextpage_url,callback = self.parse_news)
-    def parse_news(self, respons):
-        """TODO: Docstring for parse_news.
-        :returns: TODO
-
-        """
-        news_page_num = 19
-        if response.status == 200:
-            for i in range(1, news_page_num):
-                item = NwafuItem()
-                item['news_url'] = response.xpath("//*[@class='main_content']/table[1]/tr/td/ul/li/a/@href").extract()[i]
-                item['news_title'] = response.xpath("//*[@class='main_content']/table[1]/tr/td/ul/li/a/a/text()").extract()[i]
-                item['news_date'] = response.xpath("//*[@class='main_content']/table[1]/tr/td/ul/li/span/text()").extract()[i]
-                yield item
-
+                yield scrapy.Request(nextpage_url)
